@@ -1,5 +1,5 @@
-#ifndef STACK_H
-#define STACK_H
+#ifndef STACK_LL_H
+#define STACK_LL_H
 
 // STD //
 #include <stdio.h>
@@ -14,60 +14,60 @@ typedef struct node{
   struct node* bottom;
 }node;
 
-typedef struct STACK{
+typedef struct STACK_LL{
   node* NODE;
   int size;
-}STACK;
+} STACK_LL ;
 
 // FUNCTIONS //
 // Initializing the stack pointer and Returning it.
-STACK* init_stack(void);
+STACK_LL* init_ll_stack(void);
 // USAGE:
-//      STACK* <name_of_stack> = init_stack();
-// IMPORTANT: Always run 'free_stack(<name_of_stack>);' at the end of the program for each instance of an STACK.
+//      STACK_LL* <name_of_stack> = init_ll_stack();
+// IMPORTANT: Always run 'free_ll_stack(<name_of_stack>);' at the end of the program for each instance of an STACK_LL.
 //
 // Initializing the stack pointer with the first 'TOP' element and Returning it.
-STACK* init_stack_element(long int value);
+STACK_LL* init_ll_stack_element(int value);
 // USAGE:
-//      STACK* <name_of_stack> = init_stack_element(<Value_of_element>);
-// IMPORTANT: Always run 'free_stack(<name_of_stack>);' at the end of the program for each instance of an STACK.
+//      STACK_LL* <name_of_stack> = init_ll_stack_element(<Value_of_element>);
+// IMPORTANT: Always run 'free_ll_stack(<name_of_stack>);' at the end of the program for each instance of an STACK_LL.
 //
 // Freeing OR De-allocating the hole stack.
-void free_stack(STACK* stack);
+void free_ll_stack(STACK_LL* stack);
 // USAGE:
-//      free_stack(<name_of_stack>);
+//      free_ll_stack(<name_of_stack>);
 
 // CORE OPERATIONS. //
 // Add a element to the stack.
-void push_stack(STACK** stack, long int value);
+void push_ll_stack(STACK_LL** stack, int value);
 // USAGE:
-//      push_stack(&<name_of_stack>, <Value_of_element>);
+//      push_ll_stack(&<name_of_stack>, <Value_of_element>);
 //
 // Removes and Returns the 'TOP' element in stack.
-int pop_stack(STACK** stack);
+int pop_ll_stack(STACK_LL** stack);
 // USAGE:
-//      pop_stack(&<name_of_stack>);
+//      pop_ll_stack(&<name_of_stack>);
 //
 // Returns the value of 'TOP' element in stack.
-int peek_stack(STACK* stack);
+int peek_ll_stack(STACK_LL* stack);
 // USAGE:
-//      peek_stack(<name_of_stack>);
+//      peek_ll_stack(<name_of_stack>);
 
 // UTILS.
 // Returns 'True' if stack is empty OR there is no element in stack otherwise Returns 'False'
-bool is_stack_empty(STACK* stack);
+bool is_ll_stack_empty(STACK_LL* stack);
 // USAGE:
-//      is_stack_empty(<name_of_stack>);
+//      is_ll_stack_empty(<name_of_stack>);
 //
 // Returns the size OR number of elements in the stack.
-int stack_size(STACK* stack);
+int ll_stack_size(STACK_LL* stack);
 // USAGE:
-//      stack_size(<name_of_stack>);
+//      ll_stack_size(<name_of_stack>);
 
 // IMPLIMENTATION //
 
-STACK* init_stack(void){
-  STACK* temp = (STACK*)malloc(sizeof(STACK));
+STACK_LL* init_ll_stack(void){
+  STACK_LL* temp = (STACK_LL*)malloc(sizeof(STACK_LL));
   if (!temp) {
     printf("ERROR:      Memory allocation failed.\n");
     exit(1);
@@ -77,7 +77,7 @@ STACK* init_stack(void){
   return temp;
 }
 
-STACK* init_stack_element(long int value){
+STACK_LL* init_ll_stack_element(int value){
   node* temp = (node*)malloc(sizeof(node));
   if (!temp) {
     printf("ERROR:      Memory allocation failed.\n");
@@ -86,7 +86,7 @@ STACK* init_stack_element(long int value){
   temp->bottom = NULL;
   temp->data = value;
   
-  STACK* stack = (STACK*)malloc(sizeof(STACK));
+  STACK_LL* stack = (STACK_LL*)malloc(sizeof(STACK_LL));
   if (stack == NULL) {
     printf("ERROR:      Memory allocation failed.\n");
     exit(1);
@@ -97,7 +97,7 @@ STACK* init_stack_element(long int value){
   return stack;
 }
 
-void free_stack(STACK* stack){
+void free_ll_stack(STACK_LL* stack){
   if (is_stack_empty(stack)) {
     free(stack);
     stack = NULL;
@@ -110,7 +110,7 @@ void free_stack(STACK* stack){
 }
 
 // CORE OPERATIONS //
-void push_stack(STACK **stack, long int value){
+void push_ll_stack(STACK_LL** stack, int value){
   node* temp = (node*)malloc(sizeof(node));
   if (temp == NULL) {
     printf("ERROR:      Memory Allocation failed.\n");
@@ -124,7 +124,7 @@ void push_stack(STACK **stack, long int value){
   (*stack)->NODE = temp;
 }
 
-int pop_stack(STACK **stack){
+int pop_ll_stack(STACK_LL** stack){
   if (stack == NULL || *stack == NULL) {
     exit(1);
   }
@@ -147,8 +147,8 @@ int pop_stack(STACK **stack){
   return data;
 }
 
-int peek_stack(STACK *stack){
-  if (is_stack_empty(stack)) {
+int peek_ll_stack(STACK_LL* stack){
+  if (is_ll_stack_empty(stack)) {
     printf("ERROR:      Stack is Empty.\n");
     return -1;
   }
@@ -156,14 +156,14 @@ int peek_stack(STACK *stack){
 }
 
 // UTILS //
-bool is_stack_empty(STACK *stack){
+bool is_ll_stack_empty(STACK_LL* stack){
   if (stack == NULL) {
     return true;
   }
   return false;
 }
 
-int stack_size(STACK *stack){
+int ll_stack_size(STACK_LL* stack){
   if (is_stack_empty(stack)) {
     return 0;
   } else {
