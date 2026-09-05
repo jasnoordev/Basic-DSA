@@ -1,5 +1,5 @@
-#ifndef FIXED_STACK_A_H
-#define FIXED_STACK_A_H
+#ifndef F_STACK_A_H
+#define F_STACK_A_H
 
 // STD //
 #include <stdio.h>
